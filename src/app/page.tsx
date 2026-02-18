@@ -89,7 +89,7 @@ export default function Home() {
       </section>
 
       {/* FOOTER */}
-      <footer className="mt-16 sm:mt-24 text-center text-xs sm:text-sm text-white/70 pb-8 px-4">
+      <footer className="mt-20 sm:mt-50 text-center text-xs sm:text-sm text-white/70 pb-8 px-4">
         © {new Date().getFullYear()} Skillio JobPortal. All rights reserved.
       </footer>
     </main>
