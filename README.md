@@ -132,13 +132,13 @@ The application will be available at:
 ## 📸 Screenshots
 
 ### 👨‍💼 Recruiter Dashboard
-![Recruiter Dashboard](screenshots/recruiter-dashboard.png)
+![Recruiter Dashboard](screenshots/recruiter-dashboard-page.png)
 
 ### 📄 Job Listings
 ![Job Listings](screenshots/job-listings.png)
 
 ### 👩‍💻 Job Seeker Dashboard
-![Job Seeker Dashboard](screenshots/jobseeker-dashboard.png)
+![Job Seeker Dashboard](screenshots/jobseeker-dashboard-page.png)
 
 ### 👤 Profile Page
 ![Profile Page](screenshots/profile-page.png)

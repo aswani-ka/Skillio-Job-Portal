@@ -105,7 +105,7 @@ export default function RecruiterDashboard() {
   return (
     <div className="min-h-screen bg-gray-50 font-league-spartan">
       {/* HEADER */}
-      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur border-b">
+      <header className="sticky top-4 z-40 bg-white/95 backdrop-blur">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="h-10 w-10 rounded-xl bg-teal-600/10 flex items-center justify-center">
@@ -149,9 +149,9 @@ export default function RecruiterDashboard() {
       {/* CONTENT */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
         {/* Top section */}
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-5 mb-6">
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-5 mb-8 mt-8">
           <div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
+            <h2 className="text-2xl sm:text-3xl font-bold text-teal-800">
               My Job Posts
             </h2>
             <p className="text-gray-600 mt-2 text-base">
@@ -160,9 +160,9 @@ export default function RecruiterDashboard() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-3 sm:items-center">
-            <div className="bg-white border rounded-xl px-4 py-3 flex items-center justify-between sm:justify-start gap-3">
+            <div className="bg-white border border-gray-200 rounded-xl px-4 py-3 flex items-center justify-between sm:justify-start gap-3">
               <span className="text-sm text-gray-500">Total Jobs</span>
-              <span className="text-lg font-bold text-gray-900">
+              <span className="text-lg font-semibold text-gray-800">
                 {stats.totalJobs}
               </span>
             </div>
@@ -199,7 +199,7 @@ export default function RecruiterDashboard() {
         ) : (
           <>
             {/* Desktop Table */}
-            <div className="hidden md:block bg-white border rounded-xl overflow-hidden">
+            <div className="hidden md:block bg-white rounded-xl overflow-hidden">
               <table className="w-full text-left">
                 <thead className="bg-gray-50 text-gray-700">
                   <tr>
@@ -214,7 +214,7 @@ export default function RecruiterDashboard() {
                   {jobs.map(job => (
                     <tr
                       key={job._id}
-                      className="border-t hover:bg-gray-50 transition"
+                      className="border-b border-gray-200 hover:bg-gray-50 transition"
                     >
                       <td className="p-4 font-semibold text-gray-900">
                         {job.position}
@@ -254,7 +254,7 @@ export default function RecruiterDashboard() {
               {jobs.map(job => (
                 <div
                   key={job._id}
-                  className="bg-white border rounded-xl p-5"
+                  className="bg-white border border-gray-200 rounded-xl p-5"
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div>
@@ -270,21 +270,21 @@ export default function RecruiterDashboard() {
                   <div className="mt-4 flex flex-wrap gap-3">
                     <Link
                       href={`/dashboard/recruiter/edit/${job._id}`}
-                      className="px-4 py-2 rounded-lg border text-teal-700 font-semibold hover:bg-teal-50 transition"
+                      className="px-4 py-2 rounded-lg border border-gray-300 text-teal-700 font-semibold hover:bg-teal-50 transition"
                     >
                       Edit
                     </Link>
 
                     <Link
                       href={`/dashboard/recruiter/jobs/${job._id}/applicants`}
-                      className="px-4 py-2 rounded-lg border text-blue-700 font-semibold hover:bg-blue-50 transition"
+                      className="px-4 py-2 rounded-lg border border-gray-300 text-blue-700 font-semibold hover:bg-blue-50 transition"
                     >
                       Applicants
                     </Link>
 
                     <button
                       onClick={() => handleDelete(job._id)}
-                      className="px-4 py-2 rounded-lg border text-red-600 font-semibold hover:bg-red-50 transition cursor-pointer"
+                      className="px-4 py-2 rounded-lg border border-gray-300 text-red-600 font-semibold hover:bg-red-50 transition cursor-pointer"
                     >
                       Delete
                     </button>

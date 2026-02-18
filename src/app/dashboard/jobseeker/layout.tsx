@@ -81,7 +81,7 @@ export default function JobSeekerLayout({
   return (
     <div className="min-h-screen bg-gray-50 font-league-spartan">
       {/* HEADER */}
-      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur border-b">
+      <header className="sticky top-4 z-40 bg-white/95 backdrop-blur">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
           {/* Title */}
           <div className="flex items-center gap-3">

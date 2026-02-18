@@ -6,7 +6,7 @@ export default function JobSeekerDashboard() {
   return (
     <div className="font-league-spartan">
       {/* Welcome Section */}
-      <div className="mb-8">
+      <div className="mb-8 mt-8">
         <h2 className="text-3xl sm:text-4xl font-bold text-teal-800">
           Welcome back 👋
         </h2>
@@ -19,7 +19,7 @@ export default function JobSeekerDashboard() {
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <Link
           href="/jobs"
-          className="bg-white p-8 rounded-xl border hover:shadow-lg transition group"
+          className="bg-white p-8 rounded-xl hover:shadow-lg transition group"
         >
           <h3 className="text-xl font-semibold text-gray-900 group-hover:text-teal-700">
             Browse Jobs
@@ -31,7 +31,7 @@ export default function JobSeekerDashboard() {
 
         <Link
           href="/dashboard/jobseeker/applications"
-          className="bg-white p-8 rounded-xl border hover:shadow-lg transition group"
+          className="bg-white p-8 rounded-xl hover:shadow-lg transition group"
         >
           <h3 className="text-xl font-semibold text-gray-900 group-hover:text-teal-700">
             My Applications
@@ -43,7 +43,7 @@ export default function JobSeekerDashboard() {
 
         <Link
           href="/profile/jobseeker"
-          className="bg-white p-8 rounded-xl border hover:shadow-lg transition group"
+          className="bg-white p-8 rounded-xl hover:shadow-lg transition group"
         >
           <h3 className="text-xl font-semibold text-gray-900 group-hover:text-teal-700">
             My Profile
