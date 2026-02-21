@@ -15,26 +15,17 @@ export async function POST(request:NextRequest) {
         const { email, password } = await request.json()
         const user = await User.findOne({email})
         if(!user) {
-            return NextResponse.json(
-                { error: "Invalid credentials"},
-                { status: 401}
-            )
+            return NextResponse.json({ error: "Invalid credentials"}, { status: 401})
         }
 
         const isPasswordValid = await comparePassword(password, user.password)
         
         if(!isPasswordValid) {
-            return NextResponse.json(
-                { error: "Invalid credentials"},
-                { status: 401}
-            )
+            return NextResponse.json({ error: "Invalid credentials"}, { status: 401})
         }
         
         if(!user.isVerified) {
-            return NextResponse.json(
-                { error: "Please verify your email"},
-                { status: 403}
-            )
+            return NextResponse.json({ error: "Please verify your email"},{ status: 403})
         }
 
         const token = signToken({

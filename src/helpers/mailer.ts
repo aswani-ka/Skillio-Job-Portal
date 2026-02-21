@@ -12,86 +12,90 @@ const transporter = nodemailer.createTransport({
 export async function sendVerificationEmail(email: string, token: string) {
   const verifyLink = `${process.env.NEXT_PUBLIC_APP_URL}/verify-email?token=${token}`
 
-  await transporter.sendMail({
-    from: '"Job Portal" <no-reply@jobportal.com>',
-    to: email,
-    subject: "Verify your email address",
-    html: `
-      <div style="font-family: Arial, sans-serif; background:#f4f6f8; padding:40px;">
-        <div style="max-width:600px; margin:auto; background:#ffffff; padding:30px; border-radius:8px;">
-          <h2 style="color:#0f766e;">Verify your email</h2>
+  if (process.env.DEMO_MODE !== "true") {
+    await transporter.sendMail({
+      from: process.env.EMAIL_FROM! || '"Skillio Job Portal" <no-reply@skilliojobportal.com>',
+      to: email,
+      subject: "Verify your email address",
+      html: `
+        <div style="font-family: Arial, sans-serif; background:#f4f6f8; padding:40px;">
+          <div style="max-width:600px; margin:auto; background:#ffffff; padding:30px; border-radius:8px;">
+            <h2 style="color:#0f766e;">Verify your email</h2>
 
-          <p style="color:#333;">
-            Thank you for signing up with <strong>Job Portal</strong>.
-          </p>
+            <p style="color:#333;">
+              Thank you for signing up with <strong>Job Portal</strong>.
+            </p>
 
-          <p style="color:#555;">
-            Please confirm your email address by clicking the button below:
-          </p>
+            <p style="color:#555;">
+              Please confirm your email address by clicking the button below:
+            </p>
 
-          <a href="${verifyLink}"
-             style="display:inline-block; margin-top:20px; padding:12px 24px;
-             background:#0f766e; color:#ffffff; text-decoration:none;
-             border-radius:6px; font-weight:bold;">
-            Verify Email
-          </a>
+            <a href="${verifyLink}"
+              style="display:inline-block; margin-top:20px; padding:12px 24px;
+              background:#0f766e; color:#ffffff; text-decoration:none;
+              border-radius:6px; font-weight:bold;">
+              Verify Email
+            </a>
 
-          <p style="margin-top:30px; font-size:12px; color:#777;">
-            If you didn't create this account, you can safely ignore this email.
-          </p>
+            <p style="margin-top:30px; font-size:12px; color:#777;">
+              If you didn't create this account, you can safely ignore this email.
+            </p>
 
-          <hr style="margin:30px 0;" />
+            <hr style="margin:30px 0;" />
 
-          <p style="font-size:12px; color:#999;">
-            © ${new Date().getFullYear()} Job Portal. All rights reserved.
-          </p>
+            <p style="font-size:12px; color:#999;">
+              © ${new Date().getFullYear()} Skillio Job Portal. All rights reserved.
+            </p>
+          </div>
         </div>
-      </div>
-    `,
-  })
+      `,
+    })
+  }
 }
 
 
 export async function sendResetPasswordEmail(email: string, token: string) {
   const resetLink = `${process.env.NEXT_PUBLIC_APP_URL}/reset-password?token=${token}`
 
-  await transporter.sendMail({
-    from: '"Job Portal" <no-reply@jobportal.com>',
-    to: email,
-    subject: "Reset your password",
-    html: `
-      <div style="font-family: Arial, sans-serif; background:#f4f6f8; padding:40px;">
-        <div style="max-width:600px; margin:auto; background:#ffffff; padding:30px; border-radius:8px;">
-          <h2 style="color:#1d4ed8;">Reset your password</h2>
+  if (process.env.DEMO_MODE !== "true") {
+    await transporter.sendMail({
+      from: process.env.EMAIL_FROM! || '"Skillio Job Portal" <no-reply@skilliojobportal.com>',
+      to: email,
+      subject: "Reset your password",
+      html: `
+        <div style="font-family: Arial, sans-serif; background:#f4f6f8; padding:40px;">
+          <div style="max-width:600px; margin:auto; background:#ffffff; padding:30px; border-radius:8px;">
+            <h2 style="color:#1d4ed8;">Reset your password</h2>
 
-          <p style="color:#333;">
-            We received a request to reset your password.
-          </p>
+            <p style="color:#333;">
+              We received a request to reset your password.
+            </p>
 
-          <p style="color:#555;">
-            Click the button below to set a new password. This link will expire shortly.
-          </p>
+            <p style="color:#555;">
+              Click the button below to set a new password. This link will expire shortly.
+            </p>
 
-          <a href="${resetLink}"
-             style="display:inline-block; margin-top:20px; padding:12px 24px;
-             background:#1d4ed8; color:#ffffff; text-decoration:none;
-             border-radius:6px; font-weight:bold;">
-            Reset Password
-          </a>
+            <a href="${resetLink}"
+              style="display:inline-block; margin-top:20px; padding:12px 24px;
+              background:#1d4ed8; color:#ffffff; text-decoration:none;
+              border-radius:6px; font-weight:bold;">
+              Reset Password
+            </a>
 
-          <p style="margin-top:30px; font-size:12px; color:#777;">
-            If you didn't request a password reset, please ignore this email.
-          </p>
+            <p style="margin-top:30px; font-size:12px; color:#777;">
+              If you didn't request a password reset, please ignore this email.
+            </p>
 
-          <hr style="margin:30px 0;" />
+            <hr style="margin:30px 0;" />
 
-          <p style="font-size:12px; color:#999;">
-            © ${new Date().getFullYear()} Job Portal. All rights reserved.
-          </p>
+            <p style="font-size:12px; color:#999;">
+              © ${new Date().getFullYear()} Skillio Job Portal. All rights reserved.
+            </p>
+          </div>
         </div>
-      </div>
-    `,
-  })
+      `,
+    })  
+  }                                        
 }
 
 
@@ -168,7 +172,7 @@ export async function sendApplicationStatusEmail({
       `
 
   await transporter.sendMail({
-    from: '"Job Portal" <no-reply@jobportal.com>',
+    from: process.env.EMAIL_FROM!,
     to: email,
     subject,
     html,

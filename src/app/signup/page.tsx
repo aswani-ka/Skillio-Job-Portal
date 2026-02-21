@@ -21,6 +21,8 @@ export default function SignupPage() {
   const [showPassword, setShowPassword] = useState(false)
   const [loading, setLoading] = useState(false)
 
+  const [verifyLink, setVerifyLink] = useState<string | null>(null)
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -40,12 +42,20 @@ export default function SignupPage() {
     try {
       setLoading(true)
 
-      await axios.post("/api/auth/signup", {
+      const res = await axios.post("/api/auth/signup", {
         name,
         email,
         password,
         role,
       })
+
+      const link = res.data?.verifyLink as string | undefined
+
+      if(link) {
+        toast.success("Account created. Please verify your email using the demo link below.")
+        setVerifyLink(link)
+        return
+      }
 
       toast.success("Signup successful. Please verify your email.")
       router.push("/login")
@@ -74,6 +84,40 @@ export default function SignupPage() {
           <p className="text-center text-gray-500 mb-6 text-lg">
             Create your account to get started
           </p>
+
+          {/* ===== DEMO VERIFICATION BOX ===== */}
+          {verifyLink && (
+            <div className="mb-5 rounded-lg border border-teal-200 bg-teal-50 p-4">
+              <p className="text-sm text-teal-900 font-semibold">
+                Demo Mode:
+              </p>
+              <p className="text-sm text-teal-800 mt-1">
+                Click below to verify your email and then login.
+              </p>
+
+              <div className="mt-3 flex gap-2">
+                <a
+                  href={verifyLink}
+                  className="inline-flex items-center justify-center rounded-lg bg-teal-700 px-4 py-2 text-white font-semibold hover:bg-teal-800 transition"
+                >
+                  Verify Email (Demo)
+                </a>
+
+                <button
+                  type="button"
+                  onClick={() => router.push("/login")}
+                  className="inline-flex items-center justify-center rounded-lg border border-teal-300 px-4 py-2 text-teal-800 font-semibold hover:bg-white transition"
+                >
+                  Go to Login
+                </button>
+              </div>
+
+              <p className="text-xs text-gray-600 mt-3">
+                Note: In real production, verification happens via email inbox (Resend/SendGrid).
+              </p>
+            </div>
+          )}
+
           {/* ===== FORM ===== */}
           <form onSubmit={handleSubmit} className="space-y-4">
             <input
@@ -92,6 +136,7 @@ export default function SignupPage() {
               onChange={handleChange}
               className="w-full px-4 py-3 border rounded-lg outline-none focus:ring-2 focus:ring-teal-500 text-lg"
             />
+
             {/* PASSWORD */}
             <div className="relative">
               <input
@@ -114,6 +159,7 @@ export default function SignupPage() {
                 )}
               </button>
             </div>
+
             {/* ROLE */}
             <select
               name="role"
@@ -124,6 +170,7 @@ export default function SignupPage() {
               <option value={UserRole.JOB_SEEKER}>Job Seeker</option>
               <option value={UserRole.RECRUITER}>Recruiter</option>
             </select>
+
             {/* SUBMIT */}
             <button
               type="submit"
@@ -133,6 +180,7 @@ export default function SignupPage() {
               {loading ? "Creating Account..." : "Create Account"}
             </button>
           </form>
+          
           {/* FOOTER */}
           <p className="text-md text-center mt-6 text-gray-600">
             Already have an account?{" "}
